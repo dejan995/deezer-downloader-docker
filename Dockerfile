@@ -19,9 +19,9 @@ RUN apt-get update -y && \
 RUN pip3 install virtualenv && \
     python3 -m virtualenv -p python3 /opt/deezer/app/venv
 RUN /bin/bash -c "source /opt/deezer/app/venv/bin/activate && \
-                  pip3 install -r /opt/deezer/requirements.txt && \
-                  pip3 install -U youtube-dl \
-                  pip3 install gunicorn"
+                  pip install -r /opt/deezer/requirements.txt && \
+                  pip install -U youtube-dl \
+                  pip install gunicorn"
 
 RUN cp /opt/deezer/app/settings.ini.example /opt/deezer/app/settings.ini
 RUN sed -i 's,.*command = /usr/bin/youtube-dl.*,command = /opt/deezer/app/venv/bin/youtube-dl,' /opt/deezer/app/settings.ini
