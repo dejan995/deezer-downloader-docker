@@ -8,6 +8,7 @@ FROM python:3.8-slim
 
 # Set the working directory for the app.
 WORKDIR /opt/app
+COPY --from=0 /opt/deezer/* /opt/deezer
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=TRUE
