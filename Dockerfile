@@ -16,7 +16,8 @@ ENV PYTHONUNBUFFERED=TRUE
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends ffmpeg
 
-RUN python3 -m virtualenv -p python3 /opt/deezer/app/venv
+RUN pip3 install virtualenv && \
+    python3 -m virtualenv -p python3 /opt/deezer/app/venv
 RUN /bin/bash -c "source /opt/deezer/app/venv/bin/activate && \
                   pip3 install -r /opt/deezer/requirements.txt && \
                   pip3 install -U youtube-dl \
