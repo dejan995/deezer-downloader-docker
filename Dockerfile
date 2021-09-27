@@ -13,6 +13,7 @@ COPY --from=0 /opt/deezer/ /opt/deezer/
 ENV PYTHONUNBUFFERED=TRUE
 
 RUN apk add --no-cache ffmpeg && \
+    pip3 install --upgrade setuptools && \
     pip3 install virtualenv && \
     python3 -m virtualenv -p python3 /opt/deezer/app/venv && \
     /bin/sh -c "source /opt/deezer/app/venv/bin/activate && \
