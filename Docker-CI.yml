@@ -8,7 +8,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  ImageName: 'filemin-docker:latest'
+  ImageName: 'deezer-downloader:latest'
 
 stages:
 - stage: Build
