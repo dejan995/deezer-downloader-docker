@@ -3,13 +3,8 @@ FROM alpine/git:latest
 
 RUN git clone https://github.com/kmille/deezer-downloader.git /opt/deezer
 
-# Declare variables for Python and Alpine versions to be used to download the base image
-
-ENV PY_VER=3.8
-ENV ALPINE_VER=3.14
-
 # Pull base image for python.
-FROM python:"${PY_VER}"-alpine"${ALPINE_VER}"
+FROM python:3.8-alpine3.14
 
 # Set the working directory for the app.
 WORKDIR /opt/app
