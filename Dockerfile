@@ -5,8 +5,8 @@ RUN git clone https://github.com/kmille/deezer-downloader.git /opt/deezer
 
 # Declare variables for Python and Alpine versions to be used to download the base image
 
-ARG PY_VER=3.8
-ARG ALPINE_VER=3.14
+ENV PY_VER=3.8
+ENV ALPINE_VER=3.14
 
 # Pull base image for python.
 FROM python:"${PY_VER}"-alpine"${ALPINE_VER}"
@@ -29,7 +29,7 @@ RUN apk add --no-cache ffmpeg && \
     sed -i 's,/tmp/deezer-downloader,/mnt/deezer-downloader,' /opt/deezer/app/settings.ini && \
     useradd -s /bin/bash deezer && \
     mkdir -p /mnt/deezer-downloader && \
-    chown deezer:deezer /mnt/deezer-downloader && \
+    chown deezer:deezer /mnt/deezer-downloader
 
 USER deezer
 EXPOSE 5000
