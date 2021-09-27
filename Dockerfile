@@ -3,18 +3,21 @@ FROM alpine/git:latest
 
 RUN git clone https://github.com/kmille/deezer-downloader.git /opt/deezer
 
+# Declare variables for Python and Alpine versions to be used to download the base image
+
+ENV PY_VER 3.8
+ENV ALPINE_VER 3.14
+
 # Pull base image for python.
-FROM python:3.8-slim
+FROM python:${PY_VER}-alpine${ALPINE_VER}
 
 # Set the working directory for the app.
 WORKDIR /opt/app
 COPY --from=0 /opt/deezer/ /opt/deezer/
 
-ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=TRUE
 
-RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends ffmpeg && \
+RUN apk add --no-cache ffmpeg && \
     pip3 install virtualenv && \
     python3 -m virtualenv -p python3 /opt/deezer/app/venv && \
     /bin/bash -c "source /opt/deezer/app/venv/bin/activate && \
@@ -27,10 +30,6 @@ RUN apt-get update -y && \
     useradd -s /bin/bash deezer && \
     mkdir -p /mnt/deezer-downloader && \
     chown deezer:deezer /mnt/deezer-downloader && \
-    apt autoremove --purge && \
-    apt autoremove && \
-    apt clean && \
-    rm -rf /var/lib/apt
 
 USER deezer
 EXPOSE 5000
