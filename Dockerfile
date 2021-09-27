@@ -15,7 +15,7 @@ ENV PYTHONUNBUFFERED=TRUE
 RUN apk add --no-cache ffmpeg && \
     pip3 install virtualenv && \
     python3 -m virtualenv -p python3 /opt/deezer/app/venv && \
-    /bin/bash -c "source /opt/deezer/app/venv/bin/activate && \
+    /bin/sh -c "source /opt/deezer/app/venv/bin/activate && \
                   pip install -r /opt/deezer/requirements.txt && \
                   pip install -U youtube-dl \
                   pip install gunicorn" && \
