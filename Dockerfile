@@ -9,7 +9,7 @@ ARG PY_VER=3.8
 ARG ALPINE_VER=3.14
 
 # Pull base image for python.
-FROM python:${PY_VER}-alpine${ALPINE_VER}
+FROM python:"${PY_VER}"-alpine"${ALPINE_VER}"
 
 # Set the working directory for the app.
 WORKDIR /opt/app
