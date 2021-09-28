@@ -23,7 +23,7 @@ RUN apk add --no-cache ffmpeg alpine-sdk autoconf automake libtool gcc g++ make 
     cp /opt/deezer/app/settings.ini.example /opt/deezer/app/settings.ini && \
     sed -i 's,.*command = /usr/bin/youtube-dl.*,command = /opt/deezer/app/venv/bin/youtube-dl,' /opt/deezer/app/settings.ini && \
     sed -i 's,/tmp/deezer-downloader,/mnt/deezer-downloader,' /opt/deezer/app/settings.ini && \
-    useradd -s /bin/bash deezer && \
+    adduser -s /bin/sh deezer && \
     mkdir -p /mnt/deezer-downloader && \
     chown deezer:deezer /mnt/deezer-downloader
 
