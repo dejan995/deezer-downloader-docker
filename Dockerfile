@@ -17,15 +17,17 @@ RUN apk add --no-cache ffmpeg alpine-sdk autoconf automake libtool gcc g++ make 
     pip3 install virtualenv && \
     python3 -m virtualenv -p python3 /opt/deezer/app/venv && \
     /bin/sh -c "source /opt/deezer/app/venv/bin/activate && \
-                  pip install -r /opt/deezer/requirements.txt && \
-                  pip install -U youtube-dl \
-                  pip install gunicorn" && \
+                  pip install --no-cache-dir -r /opt/deezer/requirements.txt && \
+                  pip install --no-cache-dir -U youtube-dl \
+                  pip install --no-cache-dir gunicorn" && \
     cp /opt/deezer/app/settings.ini.example /opt/deezer/app/settings.ini && \
     sed -i 's,.*command = /usr/bin/youtube-dl.*,command = /opt/deezer/app/venv/bin/youtube-dl,' /opt/deezer/app/settings.ini && \
     sed -i 's,/tmp/deezer-downloader,/mnt/deezer-downloader,' /opt/deezer/app/settings.ini && \
     adduser -D -s /bin/sh deezer && \
     mkdir -p /mnt/deezer-downloader && \
-    chown deezer:deezer /mnt/deezer-downloader
+    chown deezer:deezer /mnt/deezer-downloader && \
+    apk del .build-deps && \
+    rm -rf /var/cache/apk/*
 
 USER deezer
 EXPOSE 5000
