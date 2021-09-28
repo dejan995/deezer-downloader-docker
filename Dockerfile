@@ -26,7 +26,7 @@ RUN apk add --no-cache ffmpeg alpine-sdk autoconf automake libtool gcc g++ make 
     adduser -D -s /bin/sh deezer && \
     mkdir -p /mnt/deezer-downloader && \
     chown deezer:deezer /mnt/deezer-downloader && \
-    apk del .build-deps && \
+    apk del alpine-sdk autoconf automake libtool gcc g++ make libffi-dev openssl-dev && \
     rm -rf /var/cache/apk/*
 
 USER deezer
