@@ -1,0 +1,33 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+name : Sync
+trigger:
+- main
+
+pool:
+  vmImage: windows-latest
+
+jobs:
+  - job: Git_Credentials
+    steps:
+    - task: CmdLine@2
+      inputs:
+       script: |
+        git config --global user.name "$(NAME)"
+        git config --global user.email "$(EMAIL)"
+
+  - job: Sync_GitLab
+    steps:
+    - task: gitsync@1
+      inputs:
+       GitRepoUrl: 'https://dejan:$(MYPATGITLAB)@$(GITLAB_HOST)/$(GITLAB_USER)/deezer-downloader.git'
+    dependsOn: Git_Credentials
+
+  - job: Sync_GitHub
+    steps:
+    - task: gitsync@1
+      inputs:
+       GitRepoUrl: 'https://$(MYPATGITHUB)@github.com/dejan995/deezer-downloader.git'
+    dependsOn: Sync_GitLab
