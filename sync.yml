@@ -29,5 +29,5 @@ jobs:
     steps:
     - task: gitsync@1
       inputs:
-       GitRepoUrl: 'https://$(MYPATGITHUB)@github.com/dejan995/deezer-downloader.git'
+       GitRepoUrl: 'https://$(MYPATGITHUB)@github.com/dejan995/deezer-downloader-docker.git'
     dependsOn: Sync_GitLab
