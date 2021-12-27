@@ -31,6 +31,7 @@ Testing:
     - mv settings.ini.example settings.ini
     - sed -i 's/^cookie_arl.*/cookie_arl = $DEEZER_COOKIE_ARL/' settings.ini
     - sed -i "s@^command.*@command = $(which youtube-dl)@" settings.ini
+    - youtube-dl --rm-cache-dir
     - pytest -v tests.py
 
 Build & Push Docker Image:
