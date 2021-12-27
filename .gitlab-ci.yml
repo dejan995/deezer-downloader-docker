@@ -16,12 +16,13 @@ stages:
   - Test Base Code
   - Build & Push Docker Image
 
-Testing:
+Testing Docker Image:
   stage: Test Docker Image
   image: ubuntu:latest
   script:
     - /bin/bash /docker/test-image.sh
 
+Testing Base Code:
   stage: Test Base Code
   image: python:3.8-alpine3.14
   script:
