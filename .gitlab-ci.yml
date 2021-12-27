@@ -18,9 +18,11 @@ stages:
 
 Testing Docker Image:
   stage: Test Docker Image
-  image: ubuntu:latest
+  image: dejan995/ubuntu-dind:latest
   script:
-    - /bin/bash /docker/test-image.sh
+    - cd docker
+    - chmod +x test-image.sh
+    - ./test-image.sh
 
 Testing Base Code:
   stage: Test Base Code
