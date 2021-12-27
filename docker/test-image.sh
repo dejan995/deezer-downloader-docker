@@ -3,10 +3,10 @@ set -eu
 
 DEEZER_COOKIE_ARL=db94998611aba3d55795d065b783d00e611cf6f107f62465dd5a340cdfa8ce379c5690789fad43f10689ec3bca16c4c1e4be9fbd1f142bf31836d16093be9f5fa886ec9a9b568ddad1f99a8fd3cf8ceb49f4d93e9c61f92337404d8cc447cb67
 
-sudo docker kill deezer-downloader 2>&1 >/dev/null || true
-sudo docker rm deezer-downloader 2>&1 >/dev/null || true
+docker kill deezer-downloader 2>&1 >/dev/null || true
+docker rm deezer-downloader 2>&1 >/dev/null || true
 echo "Running deezer downloader in the background"
-sudo docker run -d --name deezer-downloader -p 5000:5000 --volume $(pwd)/downloads/:/mnt/deezer-downloader \
+docker run -d --name deezer-downloader -p 5000:5000 --volume $(pwd)/downloads/:/mnt/deezer-downloader \
                 --env DEEZER_COOKIE_ARL=$DEEZER_COOKIE_ARL "dejan995/deezer-downloader:latest" >/dev/null
 sleep 5
 
@@ -33,5 +33,5 @@ echo "Tests succeeded."
 
 # cleanup
 echo "Cleaning up"
-sudo docker kill deezer-downloader >/dev/null
-sudo docker rm deezer-downloader >/dev/null
+docker kill deezer-downloader >/dev/null
+docker rm deezer-downloader >/dev/null
