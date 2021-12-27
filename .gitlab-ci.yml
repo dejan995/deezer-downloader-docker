@@ -12,11 +12,17 @@ variables:
   DOCKER_TLS_CERTDIR: ""
 
 stages:
-  - Test
+  - Test Docker Image
+  - Test Base Code
   - Build & Push Docker Image
 
 Testing:
-  stage: Test
+  stage: Test Docker Image
+  image: ubuntu:latest
+  script:
+    - /bin/bash /docker/test-image.sh
+
+  stage: Test Base Code
   image: python:3.8-alpine3.14
   script:
     - apk add ffmpeg alpine-sdk autoconf automake libtool gcc g++ make libffi-dev openssl-dev
