@@ -12,17 +12,8 @@ variables:
   DOCKER_TLS_CERTDIR: ""
 
 stages:
-  - Test Docker Image
   - Test Base Code
   - Build & Push Docker Image
-
-Testing Docker Image:
-  stage: Test Docker Image
-  image: dejan995/ubuntu-dind:latest
-  script:
-    - cd docker
-    - chmod +x test-image.sh
-    - ./test-image.sh
 
 Testing Base Code:
   stage: Test Base Code
